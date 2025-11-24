@@ -1,1 +1,130 @@
-C:\Users\Krishna\OneDrive\Desktop\CSE Python\Python\vidyarthi_project
+import json
+import os
+
+DATA_FILE = "students.json"
+
+
+# ----------------------- Helper Functions -----------------------
+
+def load_data():
+    """Load existing student data from JSON file."""
+    if not os.path.exists(DATA_FILE):
+        return {}
+    with open(DATA_FILE, "r") as f:
+        return json.load(f)
+
+
+def save_data(data):
+    """Save student data to JSON file."""
+    with open(DATA_FILE, "w") as f:
+        json.dump(data, f, indent=4)
+
+
+# ----------------------- Core Functionalities -----------------------
+
+def add_student(data):
+    roll = input("Enter Roll Number: ")
+    if roll in data:
+        print("Student with this roll number already exists!")
+        return
+
+    name = input("Enter Name: ")
+    age = input("Enter Age: ")
+    course = input("Enter Course: ")
+
+    data[roll] = {
+        "name": name,
+        "age": age,
+        "course": course
+    }
+    save_data(data)
+    print("Student added successfully!")
+
+
+def view_student(data):
+    roll = input("Enter Roll Number to View: ")
+    student = data.get(roll)
+
+    if student:
+        print("\n--- Student Details ---")
+        print(f"Roll Number: {roll}")
+        print(f"Name: {student['name']}")
+        print(f"Age: {student['age']}")
+        print(f"Course: {student['course']}\n")
+    else:
+        print("Student not found!")
+
+
+def update_student(data):
+    roll = input("Enter Roll Number to Update: ")
+    if roll not in data:
+        print("Student not found!")
+        return
+
+    print("\nEnter new details (leave blank to keep old value):")
+    name = input(f"Name ({data[roll]['name']}): ") or data[roll]['name']
+    age = input(f"Age ({data[roll]['age']}): ") or data[roll]['age']
+    course = input(f"Course ({data[roll]['course']}): ") or data[roll]['course']
+
+    data[roll] = {"name": name, "age": age, "course": course}
+    save_data(data)
+    print("Student updated successfully!")
+
+
+def delete_student(data):
+    roll = input("Enter Roll Number to Delete: ")
+    if roll in data:
+        del data[roll]
+        save_data(data)
+        print("Student deleted successfully!")
+    else:
+        print("Student not found!")
+
+
+def view_all_students(data):
+    if not data:
+        print("No students in database.")
+        return
+    print("\n--- All Students ---")
+    for roll, student in data.items():
+        print(f"Roll: {roll}, Name: {student['name']}, Age: {student['age']}, Course: {student['course']}")
+    print()
+
+
+# ----------------------- Main Program Loop -----------------------
+
+def main():
+    data = load_data()
+
+    while True:
+        print("\n====== Student Database Management System ======")
+        print("1. Add Student")
+        print("2. View Student")
+        print("3. Update Student")
+        print("4. Delete Student")
+        print("5. View All Students")
+        print("6. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            add_student(data)
+        elif choice == "2":
+            view_student(data)
+        elif choice == "3":
+            update_student(data)
+        elif choice == "4":
+            delete_student(data)
+        elif choice == "5":
+            view_all_students(data)
+        elif choice == "6":
+            print("Exiting... Goodbye!")
+            break
+        else:
+            print("Invalid choice! Please try again.")
+
+
+# ----------------------- Start Program -----------------------
+if __name__ == "__main__":
+    main()
+
