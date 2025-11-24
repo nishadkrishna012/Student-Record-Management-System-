@@ -1,72 +1,55 @@
 # currency converter
 
-Welcome to the Student Database Management System (SDMS)! This is a simple, console-based application built with Python for managing student records. It utilizes a JSON file to store and persist the data, acting as a lightweight, file-based database.
+**Simple INR Currency Converter**
+This is a basic Python script that converts a user-provided amount in Indian Rupees (INR) to six major foreign currencies using a set of fixed exchange rates.
+
+This script is ideal for learning fundamental Python functions, dictionaries, loops, and user input handling.
 
 **Features**
-This system provides basic CRUD (Create, Read, Update, Delete) functionalities essential for any management application:
+User Input: Prompts the user to enter the amount in INR to convert.
 
-Add Student (Create): Register a new student with their roll number, name, age, and course.
+Multiple Conversions: Simultaneously calculates the equivalent amount in 6 different currencies.
 
-View Student (Read): Look up and display the details of a single student using their unique roll number.
+Supported Currencies:
 
-Update Student (Update): Modify the name, age, or course details for an existing student.
+USD (US Dollar)
 
-Delete Student (Delete): Remove a student's record from the database.
+EUR (Euro)
 
-View All Students (Read All): Display a list of all currently registered students.
+GBP (British Pound)
 
-**Prerequisites**
-To run this application, you only need:
+JPY (Japanese Yen)
 
-Python 3.x installed on your system.
+CAD (Canadian Dollar)
 
-**Getting Started**
-1. Save the Code
-Save the provided Python code into a file named student_manager.py (or any other name you prefer).
+AUD (Australian Dollar)
 
-2. Run the Application
-Open your terminal or command prompt, navigate to the directory where you saved the file, and run:
+Error Handling: Checks for valid numerical input.
+
+**How to Run the Script**
+Save the Code: Save the code block below into a file named converter.py.
+
+Open Terminal: Navigate to the directory where you saved the file.
+
+Execute: Run the script using the Python interpreter:
 
 Bash
 
-python student_manager.py
-3. Interact with the Menu
-The program will start and display a menu. Simply enter the number corresponding to the action you wish to perform and follow the on-screen prompts.
+python converter.py
+Enter Amount: The script will prompt you to enter the amount in INR, and then it will display the converted values.
 
-**Data Persistence**
-All student records are stored in a file named students.json in the same directory as the script. This file is automatically created if it doesn't exist and updated every time you add, update, or delete a student.
 
-The load_data() function handles reading the records from this file upon startup.
 
-The save_data() function handles writing the records back to the file to save your changes.
+**Note on Exchange Rates**
+The exchange rates defined in the EXCHANGE_RATES dictionary are fixed and hardcoded.
 
-Code Structure Overview
-The code is organized into three main sections for clarity:
+For a real-time, production-ready application, you should use an external Currency Exchange Rate API to fetch up-to-date rates instead of relying on fixed values.
 
-Helper Functions
-load_data(): Checks for and loads data from students.json.
+**Contribution**
+Feel free to fork this repository and enhance it! You can improve it by:
 
-save_data(data): Writes the current data dictionary to students.json.
+Adding more currencies to the EXCHANGE_RATES dictionary.
 
-**Core Functionalities**
-This section contains the main CRUD logic:
+Implementing an API call to fetch live exchange rates.
 
-add_student(data)
-
-view_student(data)
-
-update_student(data)
-
-delete_student(data)
-
-view_all_students(data)
-
-**Main Program Loop**
-main(): Initializes the data, presents the menu, and directs the program flow based on user input until the user chooses to exit.
-
-**Customization**
-You can easily change the name of the data file by modifying the DATA_FILE constant at the top of the script.
-
-The structure of the student data (name, age, course) is defined in add_student. To add more fields (e.g., email, GPA), you would need to update this function and the related view/update functions accordingly.
-
-Would you like to see an example of how the students.json file would look after adding a student?
+Allowing the user to select the base currency (not just INR).
