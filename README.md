@@ -1,4 +1,4 @@
-# Student-Record-Management-System-
+# currency converter
 
 Welcome to the Student Database Management System (SDMS)! This is a simple, console-based application built with Python for managing student records. It utilizes a JSON file to store and persist the data, acting as a lightweight, file-based database.
 
